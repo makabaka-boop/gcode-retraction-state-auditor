@@ -1,0 +1,16 @@
+services:
+  motion-audit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: motion-audit:latest
+    container_name: motion-audit
+    # Usage (threshold is an integer in thousandths of a unit):
+    #   docker compose run --rm motion-audit /input/example.gcode 2000
+    # Mount the host directory containing G-code files read-only at /input.
+    volumes:
+      - ./examples:/input:ro
+    # Default arguments are overridden by anything after the service name.
+    command: ["/input/example.gcode", "2000"]
+    # Exit code contract: 0 clean, 2 first UNPROTECTED_TRAVEL, 1 input error.
+    restart: "no"
