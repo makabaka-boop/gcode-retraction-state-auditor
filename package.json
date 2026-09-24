@@ -1,0 +1,20 @@
+{
+  "name": "motion-audit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "G-code travel-move retraction auditor: tracks extrusion state across absolute/relative modes and G92 resets to flag unprotected travel moves.",
+  "type": "module",
+  "bin": {
+    "motion-audit": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "audit": "node dist/cli.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.1.0"
+  }
+}

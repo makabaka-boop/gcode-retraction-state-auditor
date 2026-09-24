@@ -1,0 +1,15 @@
+# motion-audit: G-code travel retraction auditor.
+#
+#   docker compose run --rm motion-audit --threshold 1500 /samples/stringing.gcode
+#   docker compose run --rm motion-audit --threshold 1500 /samples/clean.gcode
+#
+# Mount your own file with:  docker compose run --rm -v "$PWD:/data:ro" motion-audit -t 1500 /data/print.gcode
+services:
+  motion-audit:
+    build: .
+    image: motion-audit:latest
+    read_only: true
+    volumes:
+      - ./samples:/samples:ro
+    # Default invocation; override with `docker compose run motion-audit ...`.
+    command: ["--threshold", "1500", "/samples/stringing.gcode"]
